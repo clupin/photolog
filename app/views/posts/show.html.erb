@@ -1,0 +1,33 @@
+<h1><%= @post.title %></h1>
+<div>
+	<% unless @post.user.nil? %>
+	<p>
+		Escrito por: <%= @post.user.email %> , de username: <%= @post.user.username %>
+	</p>
+	<% end %>
+</div>
+<div class="field">
+	<%= image_tag @post.cover.url(:thumb) %>
+</div>
+<div>
+	<p>
+		Visitas: <%= @post.visits_count %>
+	</p>
+</div>
+<div>
+	<%= @post.body %>
+</div>
+<div>
+	<%= link_to "Editar", edit_post_path(@post) %>
+</div>
+<div class="field">
+	<h3>Comentarios</h3>
+	<ul id="comments-box">
+		<% @post.comments.each do |comment|%>
+		<li>
+			<%= comment.body %> - <%= comment.user.email %>
+		</li>
+		<% end %>
+	</ul>
+	<%= render "comments/form" %>
+</div>

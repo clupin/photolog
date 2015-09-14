@@ -1,0 +1,20 @@
+<h1><%= name %> Post</h1>
+<%= form_for(@post) do |f|%>
+	<% @post.errors.full_messages.each do |messages| %>
+		<div class = "field">
+			* <%= messages %>
+		</div>
+	<% end %>
+	<div class = "field">
+		<%= f.text_field :title, placeholder: "Titulo" , class:"form-control" %>
+	</div>
+	<div class="field">
+		Imagen: <%= f.file_field :cover %>
+	</div>
+	<div class = "field">
+		<%= f.text_area :body, placeholder: "Escribe aquí el post", class:"form-control" %>
+	</div>
+	<div class="field">
+		<%= f.submit "Guardar" , class:"btn btn-primary" %>
+	</div>
+<% end %>
