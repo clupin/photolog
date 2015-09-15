@@ -1,0 +1,28 @@
+
+<div>
+	<h1>Mi perfil</h1>
+	<p>Email: <%= @user.email %></p>
+</div>
+<div>
+	<h2>Mis amigos</h2>
+	<ul>
+	  <% for friendship in @user.friendships %>
+	  <li>
+	    <%= h friendship.friend.email %>
+	    (<%= link_to "eliminar amigo", friendship, :method => :delete %>)
+	  </li>
+	  <% end %>  
+	</ul>
+</div>
+<div>
+	<h2>Quienes me tienen como amigo</h2>
+	<ul>
+	  <% for user in @user.inverse_friends %>
+	  <li><%= h user.email %></li>
+	  <% end %>
+	</ul>
+</div>
+
+<div class="field">
+	<p><%= link_to "Encontrar amigos", users_path %></p>
+</div>
