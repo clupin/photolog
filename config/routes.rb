@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy, :update]
   end
-
   devise_for :users
+  resources :users, only: [:index,:show]
+  resources :friendships
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
