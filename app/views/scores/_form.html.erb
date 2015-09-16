@@ -15,7 +15,7 @@
       <%= f.label :value , "Puntaje" %><br>
     </div>
     <div class="col-md-3">
-      <%= f.number_field :value %>
+      <%= f.number_field :value , min: 1 , max: 5 %>
     </div>
     <div class="col-md-6">
       <%= f.submit %>
