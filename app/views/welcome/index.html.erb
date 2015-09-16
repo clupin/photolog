@@ -2,20 +2,7 @@
 <div class="row">
 
   <div class="col-md-3">
-    <!-- -->
-    <% if user_signed_in? %>
-      <% if current_user.is_admin? %>
-        
-      <% else %>
-        <!-- Muestra todos los post menos el ultimo-->
-        <% @posts.take(@cant).each do |posts| %>
-          <h1><%= link_to posts.title, posts %></h1>
-          <div>
-            <%= posts.body %>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render "partials/barraizq" %>
   </div>
 
   <div class="col-md-6">
@@ -24,29 +11,52 @@
   	<% if user_signed_in? %>
       <p>Hola <%= current_user.username %>, Esta es la página principal de Photolog</p>
       <% if current_user.is_admin? %>
-        <% @posts.take(@cant).each do |posts| %>
+        <% @posts.each do |posts| %>
           <h2><%= link_to posts.title, posts %></h2>
+          <div class"field">
+            <%= image_tag posts.cover.url(:thumb) %>
+          </div>
           <div>
-            <%= posts.body %> - <%= link_to "Eliminar", posts, method: :delete %>
+            <% unless posts.user.nil? %>
+              <p>
+                Posteado por: <%= posts.user.username %> - <%= link_to "Eliminar", posts, method: :delete %>
+              </p>
+            <% end %>
           </div>
         <% end %>
       <% else %> <!-- usuario normal o gold -->
         <div class="field">
           <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
         </div>
-        <% if @plast %>
-          <h2><%=  @plast.title%></h2>
-          <div>
-            <%= @plast.body %>
-          </div>
+        <% @posts.each_with_index do |posts, index| %>
+          <% if index == 0 %>
+            <h2><%=  posts.title%></h2>
+            <div class"field">
+              <%= image_tag posts.cover.url(:thumb) %>
+            </div>
+            <div>
+              <% unless posts.user.nil? %>
+                <p>
+                  Posteado por: <%= posts.user.username %>
+                </p>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% else %>
+    <% else %> <!-- desconectado -->
 		  <h3>Esta es la página principal de Photolog</h3>
-      <% @posts.take(@cant).each do |posts| %>
+      <% @posts.each do |posts| %>
         <h2><%= link_to posts.title, posts %></h2>
+        <div class"field">
+          <%= image_tag posts.cover.url(:thumb) %>
+        </div>
         <div>
-          <%= posts.body %>
+          <% unless posts.user.nil? %>
+            <p>
+              Posteado por: <%= posts.user.username %>
+            </p>
+          <% end %>
         </div>
       <% end %>
 
@@ -56,17 +66,7 @@
   </div>
 
   <div class="col-md-3">
-    <!-- -->
-    <% if user_signed_in? %>
-      <% if current_user.is_admin? %>
-
-      <% else %>
-        <!-- Muestra todos los post menos el ultimo-->
-        <% for friendship in current_user.friendships %>
-          <%= h friendship.friend.username %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render "partials/barrader" %>
   </div>
 </div>
 

@@ -5,11 +5,29 @@ class PostsController < ApplicationController
 	#GET /posts
 	def index
 		#Todos los registros SELECT * FROM articles
-		@posts = Post.all
+  		if user_signed_in?
+  			if current_user.is_admin?
+  				@posts = Post.all.order(created_at: :desc)
+  			else
+  				@posts = current_user.posts.order(created_at: :desc)
+  			end
+  		else
+  			@posts = Post.all.order(created_at: :desc)
+  		end
+		@allposts = Post.all
 	end
 
 	#GET /posts/:id
 	def show
+  		if user_signed_in?
+  			if current_user.is_admin?
+  				@posts = Post.all.order(created_at: :desc)
+  			else
+  				@posts = current_user.posts.order(created_at: :desc)
+  			end
+  		else
+  			@posts = Post.all.order(created_at: :desc)
+  		end
 		@post.update_visits_count
 		@comment = Comment.new
 	end

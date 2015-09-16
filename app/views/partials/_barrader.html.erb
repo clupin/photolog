@@ -1,0 +1,11 @@
+<!-- -->
+<% if user_signed_in? %>
+  <% if current_user.is_admin? %>
+
+  <% else %>
+    <!-- Muestra todos los post menos el ultimo-->
+    <% for friendship in current_user.friendships %>
+      <%= h friendship.friend.username %>
+    <% end %>
+  <% end %>
+<% end %>

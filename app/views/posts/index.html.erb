@@ -1,6 +1,26 @@
-<% @posts.each do |posts| %>
-	<h1><%= link_to posts.title, posts %></h1>
-	<div>
-		<%= posts.body %> - <%= link_to "Eliminar", posts, method: :delete %>
+
+<div class="row">
+	<div class="col-md-3">
+    	<%= render "partials/barraizq" %>
 	</div>
-<% end %>
+
+<div class="col-md-6">
+	<% @allposts.each do |allposts| %>
+		<h1><%= link_to allposts.title, allposts %></h1>
+		
+		<div>
+			<%= image_tag allposts.cover.url(:thumb) %>
+			<% if current_user.is_admin? %>
+				 - <%= link_to "Eliminar", allposts, method: :delete %>
+			<% end %>
+		</div>
+		
+	<% end %>
+
+</div>
+
+  <div class="col-md-3">
+    <%= render "partials/barrader" %>
+  </div>
+
+</div>

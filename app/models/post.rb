@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
 	validates :cover, presence: true
 	before_create :set_visits_count
 
-	has_attached_file :cover, styles: { medium: "1280x720", thumb: "800x600" }
+	has_attached_file :cover, styles: { medium: "1280x720", thumb: "600x400", mini: "140x140" }
 	validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 
 	def update_visits_count

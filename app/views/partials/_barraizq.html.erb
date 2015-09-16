@@ -1,0 +1,18 @@
+<!-- -->
+<% if user_signed_in? %>
+  <% if current_user.is_admin? %>
+
+  <% else %>
+    <!-- Muestra todos los post menos el ultimo-->
+    <% @posts.each_with_index do |posts, index| %>
+      <% if index == 0 %>
+        
+      <% else %>
+        <h1><%= link_to posts.title, posts %></h1>
+        <div class"field">
+        <%= image_tag posts.cover.url(:mini) %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
