@@ -22,7 +22,7 @@
   	<h1>Bienvenido a Photolog</h1>
     <div class="row"></div>
   	<% if user_signed_in? %>
-      <p>Hola <%= current_user.email %>, Esta es la página principal de Photolog</p>
+      <p>Hola <%= current_user.username %>, Esta es la página principal de Photolog</p>
       <% if current_user.is_admin? %>
         <% @posts.take(@cant).each do |posts| %>
           <h2><%= link_to posts.title, posts %></h2>
@@ -63,7 +63,7 @@
       <% else %>
         <!-- Muestra todos los post menos el ultimo-->
         <% for friendship in current_user.friendships %>
-          <%= h friendship.friend.email %>
+          <%= h friendship.friend.username %>
         <% end %>
       <% end %>
     <% end %>
