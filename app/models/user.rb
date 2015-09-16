@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
    has_many :posts
    has_many :comments
+   has_many :scores
 
    #todo sea por la amistad xD
    has_many :friendships

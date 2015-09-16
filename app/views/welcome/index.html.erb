@@ -25,24 +25,28 @@
           </div>
         <% end %>
       <% else %> <!-- usuario normal o gold -->
-        <div class="field">
-          <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
-        </div>
-        <% @posts.each_with_index do |posts, index| %>
-          <% if index == 0 %>
-            <h2><%=  posts.title%></h2>
-            <div class"field">
-              <%= image_tag posts.cover.url(:thumb) %>
-            </div>
-            <div>
-              <% unless posts.user.nil? %>
-                <p>
-                  Posteado por: <%= posts.user.username %>
-                </p>
-              <% end %>
-            </div>
+        <% if current_user.banned == true %>
+          <h1>Usuario BANEADO!</h1>
+        <% else %>
+          <div class="field">
+            <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
+          </div>
+          <% @posts.each_with_index do |posts, index| %>
+            <% if index == 0 %>
+              <h2><%=  posts.title%></h2>
+              <div class"field">
+                <%= image_tag posts.cover.url(:thumb) %>
+              </div>
+              <div>
+                <% unless posts.user.nil? %>
+                  <p>
+                    Posteado por: <%= posts.user.username %>
+                  </p>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        <%end%>
       <% end %>
     <% else %> <!-- desconectado -->
 		  <h3>Esta es la página principal de Photolog</h3>

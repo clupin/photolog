@@ -1,0 +1,57 @@
+<h1><%= @post.title %></h1>
+<div class="field">
+	<%= image_tag @post.cover.url(:thumb) %>
+</div>
+<div class="row"></div>
+<div>
+	<% unless @post.user.nil? %>
+	<p>
+		Posteado por: <%= @post.user.username %>
+	</p>
+	<% end %>
+</div>
+<div>
+	<p>
+		Visitas: <%= @post.visits_count %>
+	</p>
+</div>
+<div>
+	<p>Puntaje Total: </p>
+</div>
+<% unless current_user.nil? %>
+	<%= @average %>
+	<% if @post.user_id == current_user.id %>
+		<% @scoreado = 1 %>
+	<% end %>
+	<% @post.scores.each do |s| %>
+		<% if s.user_id == current_user.id%>
+			<% @scoreado = 1 %>
+		<% end%>
+	<% end %>
+	<% if @scoreado == 0 %>
+		<div class="field">
+			<%= render "scores/form" %>
+		</div>
+	<% end %>
+<% end %>
+<div>
+	<%= @post.body %>
+</div>
+<div>
+	<% unless current_user.nil? %>
+		<% if current_user.id == @post.user.id %>
+			<%= link_to "Editar", edit_post_path(@post) %>
+		<% end %>
+	<% end %>
+</div>
+<div class="field">
+	<h3>Comentarios</h3>
+	<ul id="comments-box">
+		<% @post.comments.each do |comment| %>
+		<li>
+			<%= comment.body %> - <%= comment.user.email %>
+		</li>
+		<% end %>
+	</ul>
+	<%= render "comments/form" %>
+</div>

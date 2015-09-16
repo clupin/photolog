@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :posts do
     resources :comments, only: [:create, :destroy, :update]
+    resources :scores, only: [:create, :destroy, :update]
   end
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :users, only: [:index,:show]

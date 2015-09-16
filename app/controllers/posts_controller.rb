@@ -30,6 +30,9 @@ class PostsController < ApplicationController
   		end
 		@post.update_visits_count
 		@comment = Comment.new
+		@score = Score.new
+		@average = Post.find(params[:id]).scores.average(:value)
+		@scoreado = 0
 	end
 
 	#GET /posts/new
