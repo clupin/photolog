@@ -16,7 +16,11 @@ class PostsController < ApplicationController
 
 	#GET /posts/new
 	def new
-		@post = Post.new
+		if current_user.is_admin?
+			redirect_to root_path
+		else
+			@post = Post.new
+		end
 	end
 
 	def edit

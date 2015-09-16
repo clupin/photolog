@@ -1,29 +1,73 @@
 
 <div class="row">
+
   <div class="col-md-3">
+    <!-- -->
     <% if user_signed_in? %>
-      <% @posts.each do |posts| %>
-        <h1><%= link_to posts.title, posts %></h1>
-        <div>
-          <%= posts.body %> - <%= link_to "Eliminar", posts, method: :delete %>
-        </div>
+      <% if current_user.is_admin? %>
+        
+      <% else %>
+        <!-- Muestra todos los post menos el ultimo-->
+        <% @posts.take(@cant).each do |posts| %>
+          <h1><%= link_to posts.title, posts %></h1>
+          <div>
+            <%= posts.body %>
+          </div>
+        <% end %>
       <% end %>
-    <% else %>
-      <p>
-        Barra izquierda
-      </p>
     <% end %>
   </div>
+
   <div class="col-md-6">
   	<h1>Bienvenido a Photolog</h1>
+    <div class="row"></div>
   	<% if user_signed_in? %>
       <p>Hola <%= current_user.email %>, Esta es la página principal de Photolog</p>
+      <% if current_user.is_admin? %>
+        <% @posts.take(@cant).each do |posts| %>
+          <h2><%= link_to posts.title, posts %></h2>
+          <div>
+            <%= posts.body %> - <%= link_to "Eliminar", posts, method: :delete %>
+          </div>
+        <% end %>
+      <% else %> <!-- usuario normal o gold -->
+        <div class="field">
+          <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
+        </div>
+        <% if @plast %>
+          <h2><%=  @plast.title%></h2>
+          <div>
+            <%= @plast.body %>
+          </div>
+        <% end %>
+      <% end %>
     <% else %>
-		  <p>Esta es la página principal de Photolog</p>
+		  <h3>Esta es la página principal de Photolog</h3>
+      <% @posts.take(@cant).each do |posts| %>
+        <h2><%= link_to posts.title, posts %></h2>
+        <div>
+          <%= posts.body %>
+        </div>
+      <% end %>
+
+
     <% end %>
 
   </div>
-  <div class="col-md-3">Barra der</div>
+
+  <div class="col-md-3">
+    <!-- -->
+    <% if user_signed_in? %>
+      <% if current_user.is_admin? %>
+
+      <% else %>
+        <!-- Muestra todos los post menos el ultimo-->
+        <% for friendship in current_user.friendships %>
+          <%= h friendship.friend.email %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 
