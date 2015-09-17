@@ -14,7 +14,7 @@
 	<div>
 		<% unless @post.user.nil? %>
 		<p>
-			Posteado por: <%= @post.user.username %>
+			Posteado por: <%= @post.user.username %> - <%= @post.created_at.strftime("%d %b. %Y") %>
 		</p>
 		<% end %>
 	</div>

@@ -29,7 +29,15 @@
           <h1>Usuario BANEADO!</h1>
         <% else %>
           <div class="field">
-            <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
+            <% if (@average == -1) or (current_user.is_gold?) %>
+              <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
+            <% else %>
+              <% if (@post.created_at.to_date == Date.current) %>
+                <p>Ya subiste fotos hoy - <%= @post.created_at.to_date %></p>
+              <% else %>
+                <p>es posible subir foto</p>
+              <% end %>
+            <% end %>
           </div>
           <!-- render para show de ultimo post -->
           <%= render "partials/generalpost" %>
