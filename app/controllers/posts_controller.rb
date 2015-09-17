@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 		@post.update_visits_count
 		@comment = Comment.new
 		@score = Score.new
-		@average = current_user.posts.last.scores.average(:value)
+		@average = Post.find(params[:id]).scores.average(:value)
 		@scoreado = 0
 	end
 

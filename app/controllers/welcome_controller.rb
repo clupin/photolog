@@ -9,7 +9,11 @@ class WelcomeController < ApplicationController
           @post = current_user.posts.last
           @comment = Comment.new
           @score = Score.new
-          @average = current_user.posts.last.scores.average(:value)
+          if current_user.posts.last.nil?
+            @average = -1
+          else
+            @average = current_user.posts.last.scores.average(:value)
+          end
           @scoreado = 0
   			end
   		else
