@@ -49,7 +49,12 @@
 	<ul id="comments-box">
 		<% @post.comments.each do |comment| %>
 		<li>
-			<%= comment.body %> - <%= comment.user.email %>
+			<%= comment.body %> - 
+			<% if comment.user.username == "ANONIMO" %>
+				<%= comment.user.username %>
+			<% else %>
+				<%= link_to comment.user.username, comment.user %>
+			<% end %>
 		</li>
 		<% end %>
 	</ul>

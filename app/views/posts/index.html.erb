@@ -7,7 +7,11 @@
 <div class="col-md-6">
 	<% @allposts.each do |allposts| %>
 		<h1><%= link_to allposts.title, allposts %></h1>
-		
+		<% unless allposts.user.nil? %>
+		<p>
+			Posteado por: <%= allposts.user.username %>
+		</p>
+		<% end %>
 		<div>
 			<%= image_tag allposts.cover.url(:thumb) %>
 			<% if current_user.is_admin? %>

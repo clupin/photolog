@@ -31,21 +31,8 @@
           <div class="field">
             <%= link_to "Subir nueva foto", controller: "posts", action: "new" %>
           </div>
-          <% @posts.each_with_index do |posts, index| %>
-            <% if index == 0 %>
-              <h2><%=  posts.title%></h2>
-              <div class"field">
-                <%= image_tag posts.cover.url(:thumb) %>
-              </div>
-              <div>
-                <% unless posts.user.nil? %>
-                  <p>
-                    Posteado por: <%= posts.user.username %>
-                  </p>
-                <% end %>
-              </div>
-            <% end %>
-          <% end %>
+          <!-- render para show de ultimo post -->
+          <%= render "partials/generalpost" %>
         <%end%>
       <% end %>
     <% else %> <!-- desconectado -->
