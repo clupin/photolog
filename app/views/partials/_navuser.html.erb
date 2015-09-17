@@ -1,0 +1,15 @@
+<header>
+	<div class="row be-cyan txt-white large-padding">
+		<div class="col-md-7">
+				<%= link_to "Posts", posts_path %>
+		</div>
+		<div class="col-md-2">
+			<% if current_user.is_admin? %>
+                <%= link_to "Auditoria", controller: "activities" %>
+			<% end %>
+		</div>
+		<div class="col-md-3">
+			<%= link_to "Editar Cuenta", edit_user_registration_path %>
+		</div>
+	</div>
+</header>

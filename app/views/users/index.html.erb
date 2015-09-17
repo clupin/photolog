@@ -1,9 +1,22 @@
-<% for user in @users %>
-  <div class="user">
-    <p>
-      <strong><%=h user.email %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
-      <div class="clear"></div>
-    </p>
-  </div>
-<% end %>
+
+<div class="row">
+
+	<div class="col-md-3">
+	</div>
+
+
+	<div class="col-md-6">
+
+		<% @users.each do |user| %>
+			<% if (user.id == 1) or (current_user.id == user.id) %>
+			<% else %>
+				<p><strong><%= user.username %></strong> <%= link_to "Añadir amigo", friendships_path(:friend_id => user), :method => :post %></p>
+			<% end %>
+		<% end %>
+
+
+	</div>
+
+	<div class="col-md-3">
+	</div>
+</div>

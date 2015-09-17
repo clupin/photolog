@@ -9,6 +9,10 @@
 <body>
 
 	<%= render "partials/navigation" %>
+	<% if user_signed_in? %>
+		<%= render "partials/navuser" %>
+	<% end %>
+
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
 
