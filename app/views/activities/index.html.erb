@@ -1,0 +1,39 @@
+<h1>Auditoría</h1>
+<p>Lista de las acciones que han ocurrido</p>
+
+
+
+<% @activities.each do |activity| %>
+<ul>
+
+  <!-- los update de post no se consideran,xq es la accion del programa de "actualizar" lo sucedido-->
+  <% if activity.key == "post.update" %>
+  <% else %>
+  	<!-- -->
+  	<%= link_to activity.owner.username, activity.owner if activity.owner %>
+  	<% if activity.owner.nil?%>
+  		ANONIMO
+  	<% end %>
+
+
+  	<% if activity.key == "comment.create" %>
+  		añadio un comentario a
+  	<% end %>
+
+  	<% if activity.key == "score.create" %>
+  		añadio un puntaje a
+  	<% end %> 
+
+  	<% if activity.key == "post.create" %>
+  		añadio un nuevo post: 
+  		<%= link_to activity.trackable.title , activity.trackable %>
+  	<% else %>
+	  	<% if activity.trackable %>
+	  		<%= link_to activity.trackable.post.title , activity.trackable.post %>
+	  	<% else %>
+	  		El post ha sido removido
+	  	<% end %>
+	<% end %>
+  <% end %>
+</ul>
+<% end %>

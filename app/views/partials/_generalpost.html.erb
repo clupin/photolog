@@ -62,6 +62,9 @@
 					<%= comment.user.username %>
 				<% else %>
 					<%= link_to comment.user.username, comment.user %>
+					<% if comment.user.is_gold? %>
+						- G
+					<% end %>
 				<% end %>
 			</li>
 			<% end %>
