@@ -4,8 +4,9 @@
 
   <% else %>
     <!-- Muestra todos los post menos el ultimo-->
-    <% for friendship in current_user.friendships %>
-      <%= h friendship.friend.username %>
+    <% current_user.friendships.each do |friendship| %>
+    	<%= friendship.friend.username %>
+
     <% end %>
   <% end %>
 <% end %>

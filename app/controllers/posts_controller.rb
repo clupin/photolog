@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   			@posts = Post.all.order(created_at: :desc)
   		end
 		@allposts = Post.all
+        @users = User.all
 	end
 
 	#GET /posts/:id
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
   		else
   			@posts = Post.all.order(created_at: :desc)
   		end
+          @users = User.all
 		@post.update_visits_count
 		@comment = Comment.new
 		@score = Score.new

@@ -27,22 +27,10 @@
       <%= f.email_field :email, class:"form-control" %>
     </div>
 
+    <!-- cambiar gold-normal -->
     <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, class:"form-control" %>
-    </div>
-
-    <div><%= f.check_box :permission_level, {}, false %> <%= f.label :permission_level, "Male" %> </div>
-
-    <!-- checkbox y pago para cambiar a gold -->
-    <div class="field">
-      <label>Pago</label>
-      <input class="form-control" id="pagoGold" placeholder="Pago de 2500">
-    </div>
-    <div class="field">
-      <label>
-        <input type="checkbox"> Ser Gold
-      </label>
+      <%= f.label :permission_level %><br />
+      <%= f.check_box :permission_level, {}, 2 , 1 %> <%= f.label :permission_level, "Ser Gold" %>
     </div>
 
 

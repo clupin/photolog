@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
           @post = current_user.posts.last
           @comment = Comment.new
           @score = Score.new
+          @users = User.all
           if current_user.posts.last.nil?
             @average = -1
           else
@@ -20,4 +21,5 @@ class WelcomeController < ApplicationController
   			@posts = Post.all.order(created_at: :desc)
   		end
   	end
+
 end

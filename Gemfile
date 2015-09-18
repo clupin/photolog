@@ -27,6 +27,7 @@ gem 'devise'
 gem 'jquery-turbolinks'
 gem 'paperclip'
 gem 'public_activity'
+gem 'cancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,11 +7,13 @@
 	<% end %>
 	<div class = "field">
 		<%= f.text_field :title, placeholder: "Titulo" , class:"form-control" %>
+		<i>(Máximo 50 caracteres)</i>
 	</div>
 	<div class="field">
 		Imagen: <%= f.file_field :cover %>
 	</div>
 	<div class = "field">
+		<i>(Máximo 2000 caracteres)</i>
 		<%= f.text_area :body, placeholder: "Escribe aquí el post", class:"form-control" %>
 	</div>
 	<div class="field">
