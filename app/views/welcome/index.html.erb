@@ -27,8 +27,8 @@
       <% else %> <!-- usuario normal o gold -->
         <% if current_user.banned == true %>
           <h1>Usuario BANEADO!</h1>
-          la fecha de banneo es: <%= current_user.banned_time %>
-          recuerda que este ban, es solo por una semana
+          <p>la fecha de banneo es: <%= current_user.banned_time %>
+          recuerda que este ban, es solo por una semana</p>
         <% else %>
           <div class="field">
             <% if (@average == -1) or (current_user.is_gold?) %>

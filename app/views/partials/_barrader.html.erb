@@ -3,9 +3,9 @@
   <% if current_user.is_admin? %>
 
   <% else %>
-    <!-- Muestra todos los post menos el ultimo-->
+    <!-- Muestra todos los nombres de amigos-->
     <% current_user.friendships.each do |friendship| %>
-    	<%= friendship.friend.username %>
+    	<p><%= friendship.friend.username %></p>
 
     <% end %>
   <% end %>
